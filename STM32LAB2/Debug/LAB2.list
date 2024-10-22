@@ -304,7 +304,7 @@ int main(void)
  80002be:	2064      	movs	r0, #100	; 0x64
  80002c0:	f000 f938 	bl	8000534 <setTimer0>
   setTimer1(DURATION_1);
- 80002c4:	2032      	movs	r0, #50	; 0x32
+ 80002c4:	2019      	movs	r0, #25
  80002c6:	f000 f949 	bl	800055c <setTimer1>
   setTimer2(DURATION_2);
  80002ca:	2064      	movs	r0, #100	; 0x64
@@ -348,7 +348,7 @@ int main(void)
  8000304:	2b01      	cmp	r3, #1
  8000306:	d10e      	bne.n	8000326 <main+0x96>
 		  setTimer1(DURATION_1);
- 8000308:	2032      	movs	r0, #50	; 0x32
+ 8000308:	2019      	movs	r0, #25
  800030a:	f000 f927 	bl	800055c <setTimer1>
 		  led_index = (led_index + 1) % LED_NUMBER;
  800030e:	4b0e      	ldr	r3, [pc, #56]	; (8000348 <main+0xb8>)
