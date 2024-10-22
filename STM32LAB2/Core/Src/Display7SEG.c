@@ -7,24 +7,18 @@
 
 #include "Display7SEG.h"
 
+uint16_t set7SEG[11] = {0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x10, 0xFF};
+uint16_t reset7SEG[11] = {0xBF, 0x86, 0xDB, 0xCF, 0xE6, 0xED, 0xFD, 0x87, 0xFF, 0xEF, 0x00};
+
 void Display7SEG(int num) {
-    uint16_t setVal, resetVal;
-
-    switch (num) {
-        case 0: setVal = 0x40; resetVal = 0xBF; break;
-        case 1: setVal = 0x79; resetVal = 0x86; break;
-        case 2: setVal = 0x24; resetVal = 0xDB; break;
-        case 3: setVal = 0x30; resetVal = 0xCF; break;
-        case 4: setVal = 0x19; resetVal = 0xE6; break;
-        case 5: setVal = 0x12; resetVal = 0xED; break;
-        case 6: setVal = 0x02; resetVal = 0xFD; break;
-        case 7: setVal = 0x78; resetVal = 0x87; break;
-        case 8: setVal = 0x00; resetVal = 0xFF; break;
-        case 9: setVal = 0x10; resetVal = 0xEF; break;
-        default: setVal = 0xFF; resetVal = 0x00; // Trường hợp lỗi
+    if (num >= 0 && num <= 9) {
+        GPIOB->ODR = (GPIOB->ODR & ~(0xFF << 0)) | (set7SEG[num] << 0);
     }
-
-    // Cập nhật giá trị vào thanh ghi dữ liệu đầu ra GPIO
-    GPIOA->ODR = (GPIOA->ODR & ~((resetVal << 8))) | (setVal << 8);
+    else {
+        GPIOB->ODR = (GPIOB->ODR & ~(0xFF << 0)) | (set7SEG[10] << 0);
+    }
 }
+
+
+
 

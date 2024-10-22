@@ -6,15 +6,16 @@
  */
 
 #include "software_timer.h"
-
+//SET TIMER1
 int timer0_counter = 0;
 int timer0_flag = 0;
 
 void setTimer0(int duration) {
-	timer0_counter = 0;
+	timer0_counter = duration;
 	timer0_flag = 0;
 }
 
+//SET TIMER2
 int timer1_counter = 0;
 int timer1_flag = 0;
 
@@ -23,10 +24,10 @@ void setTimer1(int duration) {
 	timer1_flag = 0;
 }
 
+//TIMER RUN
 void timerRun(){
 	if (timer0_counter > 0) {
 		timer0_counter--;
-		//TO DO
 		if (timer0_counter <= 0) {
 			timer0_flag = 1;
 		}
