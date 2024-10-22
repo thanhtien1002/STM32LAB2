@@ -36,6 +36,7 @@
 #define DURATION_0 100
 #define DURATION_1 25
 #define DURATION_2 100
+#define DURATION_3 100
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,7 +62,7 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 int led_index = 0;
-int led_buffer[LED_NUMBER] = {1, 2, 3, 4};
+int led_buffer[LED_NUMBER] = {0, 0, 0, 0};
 /* USER CODE END 0 */
 
 /**
@@ -103,12 +104,14 @@ int main(void)
   setTimer0(DURATION_0);
   setTimer1(DURATION_1);
   setTimer2(DURATION_2);
+  setTimer3(DURATION_3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  updateClockBuffer();
 	  update7SEG(led_index);
 	  Display7SEG(led_buffer[led_index]);
 
@@ -122,11 +125,27 @@ int main(void)
 		  setTimer1(DURATION_1);
 		  led_index = (led_index + 1) % LED_NUMBER;
 		}
-	if (timer2_flag == 1) {
-		setTimer2(DURATION_2);
-		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-	}
 
+	  if (timer2_flag == 1) {
+		  setTimer2(DURATION_2);
+		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+	  }
+
+	  if (timer3_flag == 1) {
+		  setTimer3(DURATION_3);
+		  second++;
+		  if (second >= 60) {
+			  second = 0;
+			  minute++;
+		  }
+		  if (minute >= 60) {
+			  minute = 0;
+			  hour++;
+		  }
+		  if (hour >= 24) {
+			  hour = 0;
+		  }
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
