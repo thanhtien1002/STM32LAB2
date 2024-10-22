@@ -62,7 +62,7 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 int led_index = 0;
-int led_buffer[LED_NUMBER] = {0, 0, 0, 0};
+int led_buffer[LED_NUMBER] = {1, 2, 3, 4};
 /* USER CODE END 0 */
 
 /**
@@ -117,7 +117,6 @@ int main(void)
 
 	  if (timer0_flag == 1) {
 		  setTimer0(DURATION_0);
-		  //TO DO
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 	  }
 
