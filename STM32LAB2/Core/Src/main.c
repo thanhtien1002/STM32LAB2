@@ -130,21 +130,21 @@ int main(void)
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 	  }
 
-	  if (timer3_flag == 1) {
-		  setTimer3(DURATION_3);
-		  second++;
-		  if (second >= 60) {
-			  second = 0;
-			  minute++;
-		  }
-		  if (minute >= 60) {
-			  minute = 0;
-			  hour++;
-		  }
-		  if (hour >= 24) {
-			  hour = 0;
-		  }
-	  }
+//	  if (timer3_flag == 1) {
+//		  setTimer3(DURATION_3);
+//		  second++;
+//		  if (second >= 60) {
+//			  second = 0;
+//			  minute++;
+//		  }
+//		  if (minute >= 60) {
+//			  minute = 0;
+//			  hour++;
+//		  }
+//		  if (hour >= 24) {
+//			  hour = 0;
+//		  }
+//	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
